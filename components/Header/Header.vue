@@ -4,13 +4,13 @@ import Button from "~/components/Button/Button.vue";
 </script>
 
 <template>
-  <header class="xl:h-[70px] w-full flex items-center xl:pr-[150px]">
+  <header class="md:h-[70px] w-full flex items-center md:pr-[150px]">
     <div class="relative w-[90px] h-full shrink-0">
       <div class="h-[40px] w-[40px] absolute top-[15px] left-[24px] shrink-0">
         <img src="~/assets/img/burger.svg" alt="" class="object-center object-contain w-full h-full">
       </div>
     </div>
-    <div class="xl:h-[627px]  xl:w-[90px] bg-darkgreen absolute top-0 left-0 -z-10"></div>
+    <div class="md:h-[627px] md:w-[90px] bg-darkgreen absolute top-0 left-0 -z-10"></div>
     <div class="flex justify-between w-full items-center h-full">
       <div class="text-4xl shrink-0 ml-4">
         <nuxt-link to="/">LOGO</nuxt-link>
