@@ -27,7 +27,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="bg-lightgreen w-[260px] h-[360px] p-4">
+    <div class="bg-lightgreen w-[260px] h-[360px] p-4 mb-24">
         <div class="flex justify-between">
             <div class="flex items-center">
                 <div class="w-[25px] h-[25px]">
