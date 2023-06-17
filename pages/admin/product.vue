@@ -51,13 +51,16 @@ const handlerPushUp = (data) => {
   characts.value = data.value
 }
 
+const price = ref(0);
+
 const createProduct = async () => {
   await productStore.createProduct(
       title.value,
       description.value,
       category.value,
       subcategory.value,
-      characts.value
+      characts.value,
+      price.value
   )
 }
 
@@ -106,6 +109,14 @@ const createProduct = async () => {
 
         <h3 class="my-6">Подкатегория</h3>
         <SelectSubCategory v-model="subcategory" :subs="subcategories" />
+
+        <label for="price">Цена</label>
+        <input
+            type="number"
+            v-model.number="price"
+            class="border py-2 px-3 block w-full my-8"
+            id="price"
+        >
 
         <SubmitButton text="Создать" class="py-2 px-1 block w-full bg-yellow my-6 text-white text-center" />
       </div>

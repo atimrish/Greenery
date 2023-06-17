@@ -43,7 +43,8 @@ export default defineEventHandler(async (event) => {
         photos: filenames,
         description: normalized.description.data,
         category: category,
-        characteristics: chars
+        characteristics: chars,
+        price: normalized.price.data
     });
 
     return 'Товар добавлен';

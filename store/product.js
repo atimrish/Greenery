@@ -6,13 +6,14 @@ export const useProductStore = defineStore('product', {
         currentProduct: ref({})
     }),
     actions: {
-        async createProduct(title, description, category, subcategory, characts) {
+        async createProduct(title, description, category, subcategory, characts, price) {
             const input = document.querySelector('#create_category');
             const formData = new FormData();
             formData.append('title', title);
             formData.append('description', description);
             formData.append('category', category);
             formData.append('subcategory', subcategory);
+            formData.append('price', price);
 
             for (let i = 0; i < input.files.length; i++) {
                 formData.append('photo_' + i, input.files[i])

@@ -9,6 +9,10 @@ export const Products = defineMongooseModel('Products',{
       type: Array,
       default: []
     },
+    price: {
+      type: Number,
+      required: true
+    },
     description: {
         type: String,
         required: true
@@ -16,10 +20,6 @@ export const Products = defineMongooseModel('Products',{
     category: {
         type: String,
         required: true
-    },
-    rating: {
-        type: Array,
-        default: []
     },
     reviews: {
         type: Array,

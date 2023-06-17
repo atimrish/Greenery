@@ -2,6 +2,9 @@
 import PhotoSlider from "~/components/PhotoSlider/PhotoSlider.vue";
 import {useProductStore} from "~/store/product";
 import {storeToRefs} from "pinia";
+import AddToFavorites from "~/components/Product/AddToFavorites.vue";
+import AddToCart from "~/components/Product/AddToCart.vue";
+import Rating from "~/components/Product/Rating.vue";
 
 
 
@@ -19,6 +22,8 @@ useHead({
   title: currentProduct.value.title
 });
 
+
+
 </script>
 
 <template>
@@ -28,10 +33,61 @@ useHead({
     <div class="flex">
       <PhotoSlider :photos="currentProduct.photos"/>
 
-      <div>
-        <h3 class="text-[24px] mb-8">Название товара</h3>
-        <DynamicRating/>
+      <div class="ml-6">
+        <h3 class="text-[24px]">{{currentProduct.title}}</h3>
+
+        <div class="flex items-center my-6">
+          <DynamicRating/>
+          <div class="text-[16px] text-gray ml-4">{{currentProduct.reviews.length}} отзывов</div>
+        </div>
+
+
+        <div class="mb-16">
+          <table class="w-full">
+            <caption class="text-left text-[20px] mb-4">Характеристики:</caption>
+            <tbody>
+              <tr v-for="ch in currentProduct.characteristics" class="font-light">
+                <td>{{ ch.title }}</td>
+                <td class="text-right">{{ ch.value }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="mt-4">Все характеристики</div>
+        </div>
+
+        <div>
+          <div class="text-[32px] mb-8">{{currentProduct.price}} ₽</div>
+
+          <div class="flex items-center h-[46px]">
+            <AddToFavorites class="mr-4 bg-yellow w-[46px] add-to-fav h-full p-1"/>
+            <AddToCart class="text-white bg-yellow h-full leading-[46px] px-6"/>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div>
+      <h2 class="md:text-[24px] my-8">Характеристики</h2>
+      <div>
+        <table class="w-full">
+          <tbody>
+          <tr v-for="ch in currentProduct.characteristics" class="font-light my-8">
+            <td class="text-[20px]">{{ ch.title }}</td>
+            <td class="text-right font-bold">{{ ch.value }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="md:text-[24px] my-8">Описание</h2>
+      <div class="md:text-[18px] font-light">
+        {{ currentProduct.description }}
+      </div>
+
+      <h2 class="md:text-[24px] mt-8">Отзывы</h2>
+      <div class="my-4">здесь рейтинг</div>
+
+      <ReviewForm/>
 
     </div>
 
@@ -39,5 +95,7 @@ useHead({
 </template>
 
 <style scoped>
-
+.add-to-fav:deep(path) {
+  fill: white;
+}
 </style>
