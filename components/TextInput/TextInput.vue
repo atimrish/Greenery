@@ -8,31 +8,29 @@ const props = defineProps({
     type: String,
     required: true
   },
-  label: {
-    type:String,
+  placeholder: {
+    type: String,
     default: ''
   }
 });
+
+const emits = defineEmits(['update:modelValue']);
+
 </script>
 
 <template>
   <div class="my-6">
-    <label
-        :for="id"
-        class="text-[24px] mb-10"
-    >{{label}}</label>
     <input
         type="text"
-        @input.passive="$emit('update:modelValue')"
+        @input="emits('update:modelValue', $event.target.value)"
         :value="modelValue"
         :id="id"
-        class="block h-[35px] text-[20px] w-full text-input pl-3"
+        class="block text-[20px] w-full h-full pl-3"
+        :placeholder="placeholder"
     >
   </div>
 </template>
 
 <style scoped>
-.text-input {
-  background-color: #DBDBDB;
-}
+
 </style>

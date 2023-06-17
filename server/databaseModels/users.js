@@ -1,0 +1,1 @@
+export {Users as UserModel} from '~/models/users.js';

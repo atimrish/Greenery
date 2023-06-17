@@ -1,12 +1,123 @@
 <script setup>
 import PopularCategory from "../components/PopularCategory/PopularCategory.vue";
+import {usePageStore} from "~/store/page";
 
+useHead({
+  title: 'Greenery'
+})
+
+const pageStore = usePageStore();
+pageStore.setPage('/');
+
+const renderBullet = (index, classname) => {
+  return `<span class="${classname}"></span>`;
+}
 
 </script>
 
 <template>
   <div>
-    <div class="h-[600px]"></div>
+    <Swiper
+        class="overflow-hidden h-[600px]"
+
+        :el="'.swiper-pagination'"
+        :modules="[SwiperPagination, SwiperEffectFade, SwiperFreeMode]"
+        :allow-touch-move="true"
+        :effect="'fade'"
+        :fade-effect="{
+          crossFade: true
+        }"
+        :pagination="{
+          type: 'bullets',
+          el: '.swiper-pagination',
+          clickable: true,
+          bulletClass: 'custom-bullet',
+          bulletActiveClass: 'custom-bullet-active',
+          renderBullet: renderBullet
+        }
+        "
+        :direction="'vertical'"
+        :watch-overflow="false"
+        :slides-per-view="1"
+    >
+      <SwiperSlide>
+        <div class="h-[600px] xl:w-[1200px] m-auto flex mt-2 items-center">
+          <div class="w-[40%]">
+            <h2 class="xl:text-[56px] -mt-12 font-bold">Товары</h2>
+            <div class="xl:text-[48px] font-light">для рассады</div>
+            <div class="font-light">
+              Быстро растущий садовый однолетник или
+              вечнозеленое растение в оранжерее и зимнем
+              саду покорит красотой абрикосовых цветков
+              с широкими темно-оранжевыми полосами,
+              расходящимися из темных центров.
+            </div>
+
+          </div>
+
+          <div class="w-[50%] ml-[10%] relative">
+            <div class="w-full h-[350px]">
+              <img src="~/assets/img/first_slide.jpg" alt="" class="w-full h-full object-center object-cover">
+            </div>
+
+            <div class="absolute w-[300px] h-[300px] bottom-[-60px] right-[-60px] bg-darkgreen -z-10"></div>
+            <div class="absolute w-[400px] h-[300px] top-[-60px] left-[-60px] border -z-10"></div>
+          </div>
+        </div>
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <div class="h-[600px] xl:w-[1200px] m-auto flex mt-2 items-center">
+          <div class="w-[40%]">
+            <h2 class="xl:text-[56px] -mt-12 font-bold">Всё</h2>
+            <div class="xl:text-[48px] font-light">для газона</div>
+            <div class="font-light">
+              Найдите всё для стрижки, выращивания
+              и ухаживания за вашим газоном.
+              Правильно постриженный газон создаст
+              приятную атмосферу на вашем участке
+            </div>
+
+          </div>
+
+          <div class="w-[50%] ml-[10%] relative">
+            <div class="w-full h-[350px]">
+              <img src="~/assets/img/second_slide.jpg" alt="" class="w-full h-full object-center object-cover">
+            </div>
+
+            <div class="absolute w-[300px] h-[300px] bottom-[-60px] right-[-60px] bg-darkgreen -z-10"></div>
+            <div class="absolute w-[400px] h-[300px] top-[-60px] left-[-60px] border -z-10"></div>
+          </div>
+        </div>
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <div class="h-[600px] xl:w-[1200px] m-auto flex mt-2 items-center">
+          <div class="w-[40%]">
+            <h2 class="xl:text-[56px] -mt-12 font-bold">Вазы</h2>
+            <div class="xl:text-[48px] font-light">для цветов</div>
+            <div class="font-light">
+              Этот классический аксессуар
+              преимущественно имеет строгие
+              сдержанные формы и выглядит уместно
+              в любом интерьере.
+            </div>
+
+          </div>
+
+          <div class="w-[50%] ml-[10%] relative">
+            <div class="w-full h-[350px]">
+              <img src="~/assets/img/third_slide.jpg" alt="" class="w-full h-full object-center object-cover">
+            </div>
+
+            <div class="absolute w-[300px] h-[300px] bottom-[-60px] right-[-60px] bg-darkgreen -z-10"></div>
+            <div class="absolute w-[400px] h-[300px] top-[-60px] left-[-60px] border -z-10"></div>
+          </div>
+        </div>
+      </SwiperSlide>
+      <div class="swiper-pagination flex flex-col mr-12"></div>
+    </Swiper>
+
     <div class="xl:w-[1200px] m-auto">
       <section>
         <h2 class="text-center xl:text-[48px] mb-16">Популярные категории</h2>
@@ -59,7 +170,8 @@ import PopularCategory from "../components/PopularCategory/PopularCategory.vue";
             Подробнее
           </div>
           <div class="absolute w-[320px] h-[300px] bg-green top-12 -right-28">
-            <img src="~/assets/img/br_icon.svg" alt="" class="w-[80%] h-[80%] object-contain object-center mx-auto my-[10%]">
+            <img src="~/assets/img/br_icon.svg" alt=""
+                 class="w-[80%] h-[80%] object-contain object-center mx-auto my-[10%]">
           </div>
         </div>
       </section>
@@ -76,6 +188,19 @@ import PopularCategory from "../components/PopularCategory/PopularCategory.vue";
   </div>
 </template>
 
-<style scoped>
-
+<style>
+.custom-bullet {
+  width: 8px;
+  height: 50px;
+  background-color: #B4B8B2;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+.custom-bullet-active {
+  width: 8px;
+  height: 50px;
+  background-color: #A88C1B;
+  border-radius: 5px;
+  margin: 10px 0;
+}
 </style>

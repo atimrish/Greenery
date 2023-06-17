@@ -46,7 +46,7 @@ const props = defineProps({
         <div class="text-center">{{price}} ₽</div>
         <AddToCart
             v-text="'В корзину'"
-            class="text-center mt-2 py-3 text-white bg-green"
+            class="text-center mt-2 py-3 px-16 mx-auto text-white bg-green w-fit"
         />
     </div>
 </template>
