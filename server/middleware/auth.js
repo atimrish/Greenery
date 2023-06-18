@@ -17,6 +17,9 @@ export default defineEventHandler(async (event) => {
         case '/api/user/me':
         case '/api/comment/store':
         case '/api/product/add-to-favorites':
+        case '/api/product/delete-from-favorites':
+        case '/api/product/add-to-cart':
+        case '/api/product/delete-from-cart':
             try {
                 await needAuthMiddleware(event);
             } catch (e) {

@@ -8,7 +8,7 @@ const productStore = useProductStore();
 const userStore = useUserStore();
 await userStore.getMe();
 
-const {user} = storeToRefs(userStore)
+const {user} = await storeToRefs(userStore)
 
 
 const props = defineProps({
@@ -28,10 +28,10 @@ const handlerClick = async () => {
   if (!inFavorites.value) {
     await productStore.addToFavorites(props.product_id);
   } else {
-
+    await productStore.deleteFromFavorites(props.product_id);
   }
-
   await userStore.getMe();
+  inFavorites.value = user.value.favorites.includes(props.product_id);
 }
 
 </script>

@@ -8,15 +8,16 @@ export default defineEventHandler(async (event) => {
     const {user_id} = await decode(jwt, secret);
     const {id} = getQuery(event);
 
-    console.log(id)
-
     await UserModel.updateOne({_id: user_id}, {
-        $pull: {
-            favorites: {
-                $in: [id]
+        $push: {
+            'cart': {
+                product_id: id,
+                count: 1
             }
         }
     });
 
-    return 'Товар удален';
+    console.log('asde')
+
+    return 'Товар добавлен';
 });

@@ -44,7 +44,7 @@ const changeMenuPopup = () => {
 <template>
   <header class="md:h-[70px] w-full flex items-center md:pr-[150px]">
     <div class="relative w-[90px] h-full shrink-0">
-      <div class="h-[40px] w-[40px] absolute top-[15px] left-[24px] shrink-0" >
+      <div class="h-[40px] w-[40px] absolute top-[15px] left-[24px] shrink-0 z-20" >
         <svg
             width="32"
             height="27"
@@ -61,7 +61,7 @@ const changeMenuPopup = () => {
         </svg>
       </div>
     </div>
-    <div class="md:h-[627px] md:w-[90px] bg-darkgreen absolute top-0 left-0 -z-10"></div>
+    <div class="md:h-[627px] md:w-[90px] bg-darkgreen absolute top-0 left-0 z-10"></div>
     <div class="flex justify-between w-full items-center h-full">
       <div class="text-4xl shrink-0 ml-4">
         <nuxt-link to="/" class="block w-[190px] h-[50px]">

@@ -3,27 +3,14 @@ import AddToCart from "~/components/Product/AddToCart.vue";
 import AddToFavorites from "~/components/Product/AddToFavorites.vue";
 
 const props = defineProps({
-    product_id: {
-        type: Number,
-        required: true
-    },
-    path: {
-        type: String,
-        default: 'no-product.png'
-    },
-    rating: {
-        type: Number,
-        default: 0
-    },
-    price: {
-        type: Number,
-        default: 0
-    },
-    title: {
-        type: String,
-        default: 'Название товара'
+    productData: {
+      type: Object,
+      required: true
     }
 });
+
+
+
 </script>
 
 <template>
@@ -33,20 +20,38 @@ const props = defineProps({
                 <div class="w-[25px] h-[25px]">
                     <img src="~/assets/img/star.svg" alt="" class="w-full h-full">
                 </div>
-                <div class="ml-2 font-bold">{{ rating }}</div>
+                <div class="ml-2 font-bold max-h-[30px]">{{ productData.reviews.length }}</div>
             </div>
             <AddToFavorites
                 class="w-[25px] h-[25px]"
+                :product_id="productData._id"
             />
         </div>
         <div class="w-full h-[200px] my-4 mx-auto">
-            <img src="" alt="" class="w-full h-full">
+            <NuxtLink
+                :no-prefetch="true"
+                :to="'/product/' + productData._id"
+                class="block w-full h-full"
+            >
+              <img :src="'/photo/product/' + productData.photos[0]" alt="" class="w-full h-full">
+            </NuxtLink>
+
         </div>
-        <div class="text-center text-[20px]">{{title}}</div>
-        <div class="text-center">{{price}} ₽</div>
+        <div class="text-center text-[20px] max-h-[30px] overflow-hidden whitespace-nowrap overflow-ellipsis">
+          <NuxtLink
+              :no-prefetch="true"
+              :to="{path: '/product/' + productData._id, query: {id: productData._id}}"
+
+              class="block w-full h-full"
+          >
+            {{productData.title}}
+          </NuxtLink>
+
+        </div>
+        <div class="text-center my-2">{{productData.price}} ₽</div>
         <AddToCart
-            v-text="'В корзину'"
-            class="text-center mt-2 py-3 px-16 mx-auto text-white bg-green w-fit"
+            class="text-center mt-2 py-3 px-16 w-full mx-auto text-white bg-green"
+            :product_id="productData._id"
         />
     </div>
 </template>

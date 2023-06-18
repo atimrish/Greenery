@@ -70,6 +70,24 @@ export const useProductStore = defineStore('product', {
             await useFetch(`/api/product/add-to-favorites?id=${product_id}`, {
                 method: 'POST'
             });
-        }
+        },
+
+        async deleteFromFavorites(product_id) {
+            await useFetch(`/api/product/delete-from-favorites?id=${product_id}`, {
+                method: 'POST'
+            });
+        },
+
+        async addToCart(product_id) {
+            await useFetch(`/api/product/add-to-cart?id=${product_id}`, {
+                method: 'POST'
+            });
+        },
+
+        async deleteFromCart(product_id) {
+            await useFetch(`/api/product/delete-from-cart?id=${product_id}`, {
+                method: 'POST'
+            });
+        },
     }
 });

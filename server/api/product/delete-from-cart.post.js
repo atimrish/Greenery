@@ -12,8 +12,8 @@ export default defineEventHandler(async (event) => {
 
     await UserModel.updateOne({_id: user_id}, {
         $pull: {
-            favorites: {
-                $in: [id]
+            cart: {
+                product_id: id
             }
         }
     });

@@ -5,9 +5,16 @@ import ProductContainer from "~/components/Containers/ProductContainer.vue";
 import RecentlyViewed from "~/components/RecentlyViewed/RecentlyViewed.vue";
 import FilterPopup from "~/components/Popup/FilterPopup.vue";
 
-useHead({
-  title: 'Категория'
+const route = await useRoute();
+
+const title = route.params.title;
+
+await useHead({
+  title:  title
 });
+
+
+
 
 const filterPopupIsOpen = ref(false);
 const changeFilterPopup = () => {
@@ -46,7 +53,7 @@ const changeFilterPopup = () => {
 
     <section>
       <BreadCrumbs/>
-      <h2 class="text-[24px]">Категория {количество товаров}</h2>
+      <h2 class="text-[24px]">{{ route.params.title }} {количество товаров}</h2>
       <div class="my-4">Сначала дешевые</div>
       <div class="flex justify-between items-center">
         <div>
@@ -65,7 +72,7 @@ const changeFilterPopup = () => {
     </section>
 
     <section>
-      <RecentlyViewed/>
+<!--      <RecentlyViewed/>-->
     </section>
 
   </div>
