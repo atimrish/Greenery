@@ -15,6 +15,8 @@ export default defineEventHandler(async (event) => {
     switch (url) {
         case '/api/auth/logout':
         case '/api/user/me':
+        case '/api/comment/store':
+        case '/api/product/add-to-favorites':
             try {
                 await needAuthMiddleware(event);
             } catch (e) {

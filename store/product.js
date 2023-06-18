@@ -1,4 +1,5 @@
 import {defineStore} from "pinia";
+import {useFetch} from "#app";
 
 export const useProductStore = defineStore('product', {
     state: () => ({
@@ -40,7 +41,35 @@ export const useProductStore = defineStore('product', {
 
         async getCurrentProduct(id) {
             this.currentProduct = this.products.find(item => item._id === id);
-        }
+        },
 
+        async pushComment(product_id, commentData) {
+            const formData = new FormData();
+            formData.append('text', commentData.text);
+            formData.append('rating', commentData.rating);
+            formData.append('product_id', product_id);
+
+
+            commentData.files.forEach((item, index) => {
+                formData.append('photo_' + index, item);
+            });
+
+            const data = await useFetch('/api/comment/store', {
+                method: 'POST',
+                body: formData
+            });
+            await this.fetchCurrentProduct(product_id);
+        },
+
+        async fetchCurrentProduct(id) {
+            const {data} = await useFetch(`/api/product/find?id=${id}`);
+            this.currentProduct = data.value;
+        },
+
+        async addToFavorites(product_id) {
+            await useFetch(`/api/product/add-to-favorites?id=${product_id}`, {
+                method: 'POST'
+            });
+        }
     }
 });

@@ -4,7 +4,6 @@ import {useProductStore} from "~/store/product";
 import {storeToRefs} from "pinia";
 import AddToFavorites from "~/components/Product/AddToFavorites.vue";
 import AddToCart from "~/components/Product/AddToCart.vue";
-import Rating from "~/components/Product/Rating.vue";
 
 
 
@@ -23,6 +22,11 @@ useHead({
 });
 
 
+let ratings = 0;
+currentProduct.value.reviews.forEach((item) => {
+  ratings += item.rating;
+});
+ratings = ratings / currentProduct.value.reviews.length;
 
 </script>
 
@@ -37,7 +41,8 @@ useHead({
         <h3 class="text-[24px]">{{currentProduct.title}}</h3>
 
         <div class="flex items-center my-6">
-          <DynamicRating/>
+          <DynamicRating :rating="ratings" />
+          <div class="ml-2">{{ ratings }}</div>
           <div class="text-[16px] text-gray ml-4">{{currentProduct.reviews.length}} отзывов</div>
         </div>
 
@@ -59,7 +64,7 @@ useHead({
           <div class="text-[32px] mb-8">{{currentProduct.price}} ₽</div>
 
           <div class="flex items-center h-[46px]">
-            <AddToFavorites class="mr-4 bg-yellow w-[46px] add-to-fav h-full p-1"/>
+            <AddToFavorites :product_id="product_id" class="mr-4 bg-yellow w-[46px] add-to-fav h-full p-1"/>
             <AddToCart class="text-white bg-yellow h-full leading-[46px] px-6"/>
           </div>
         </div>
@@ -80,15 +85,18 @@ useHead({
       </div>
 
       <h2 class="md:text-[24px] my-8">Описание</h2>
-      <div class="md:text-[18px] font-light">
-        {{ currentProduct.description }}
-      </div>
+      <div class="md:text-[18px] font-light">{{ currentProduct.description }}</div>
+
 
       <h2 class="md:text-[24px] mt-8">Отзывы</h2>
-      <div class="my-4">здесь рейтинг</div>
+      <div class="my-4">{{ ratings }}</div>
 
       <ReviewForm/>
 
+      <Review
+          v-for="i in currentProduct.reviews"
+          :comment-data="i"
+      />
     </div>
 
   </div>
