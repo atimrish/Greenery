@@ -3,7 +3,8 @@ import {defineMongooseModel} from "#nuxt/mongoose";
 export const Category = defineMongooseModel('Categories',{
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     photo: {
         type: String,
