@@ -27,6 +27,7 @@ currentProduct.value.reviews.forEach((item) => {
   ratings += item.rating;
 });
 ratings = ratings / currentProduct.value.reviews.length;
+ratings = ratings - (ratings % 0.01);
 
 </script>
 
