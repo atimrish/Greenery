@@ -1,1 +1,1 @@
-export default '/var/www/html/';
+export default '/var/www/pirip/';

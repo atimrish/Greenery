@@ -4,8 +4,8 @@ import {useUserStore} from "~/store/user";
 import {storeToRefs} from "pinia";
 
 
-const productStore = useProductStore();
-const userStore = useUserStore();
+const productStore = await useProductStore();
+const userStore = await useUserStore();
 await userStore.getMe();
 
 const {user} = await storeToRefs(userStore)

@@ -76,7 +76,7 @@ const changeMenuPopup = () => {
               class="h-full text-center px-6 hover:text-white hover:bg-darkgreen leading-[65px] transition-all"
               v-if="currentPage !== '/admin'"
           >
-            избранное
+            <NuxtLink class="block w-full h-full" to="/favorite">избранное</NuxtLink>
           </Button>
 
           <Button
@@ -117,7 +117,8 @@ const changeMenuPopup = () => {
           <Button
               class="h-full text-center px-6 hover:text-white hover:bg-darkgreen leading-[65px] transition-all"
               v-if="currentPage !== '/admin'"
-          >корзина
+          >
+            <NuxtLink class="block w-full h-full" to="/cart">корзина</NuxtLink>
           </Button>
 
           <Button

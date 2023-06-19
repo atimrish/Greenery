@@ -40,7 +40,7 @@ const props = defineProps({
         <div class="text-center text-[20px] max-h-[30px] overflow-hidden whitespace-nowrap overflow-ellipsis">
           <NuxtLink
               :no-prefetch="true"
-              :to="{path: '/product/' + productData._id, query: {id: productData._id}}"
+              :to="'/product/' + productData._id"
 
               class="block w-full h-full"
           >

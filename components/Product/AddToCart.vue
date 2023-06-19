@@ -3,7 +3,7 @@ import {useUserStore} from "~/store/user";
 import {storeToRefs} from "pinia";
 import {useProductStore} from "~/store/product";
 
-const userStore = useUserStore();
+const userStore = await useUserStore();
 await userStore.getMe();
 const {user} = await storeToRefs(userStore);
 
