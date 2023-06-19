@@ -9,7 +9,13 @@ const props = defineProps({
     }
 });
 
+let ratings = 0;
 
+props.productData.reviews.forEach(i => {
+  ratings += i.rating
+})
+
+const rat_value = ratings / props.productData.reviews.length - (ratings / props.productData.reviews.length % 0.01);
 
 </script>
 
@@ -20,7 +26,7 @@ const props = defineProps({
                 <div class="w-[25px] h-[25px]">
                     <img src="~/assets/img/star.svg" alt="" class="w-full h-full">
                 </div>
-                <div class="ml-2 font-bold max-h-[30px]">{{ productData.reviews.length }}</div>
+                <div class="ml-2 font-bold max-h-[30px]">{{ isNaN(rat_value) ? 0 : rat_value }}</div>
             </div>
             <AddToFavorites
                 class="w-[25px] h-[25px]"
